@@ -265,6 +265,235 @@
             </div>
         </div>
 
+        <!-- Math Explanation Section -->
+        <div class="bg-white dark:bg-gray-800 p-6 rounded-xl shadow-xl dark:shadow-2xl mt-8 border border-gray-100 dark:border-gray-700">
+            <button id="toggleMathButton" class="w-full text-left font-semibold text-indigo-600 dark:text-indigo-400 p-3 bg-indigo-50 dark:bg-indigo-900/30 rounded-lg hover:bg-indigo-100 dark:hover:bg-indigo-900/50 transition focus:outline-none border border-indigo-100 dark:border-indigo-800">
+                How the Math Works <span id="mathArrow">▼</span>
+            </button>
+            <div id="mathSection" class="details-section hidden mt-4 p-6 bg-gray-50 dark:bg-gray-700/50 border border-gray-200 dark:border-gray-600 rounded-lg">
+                <div class="space-y-6 text-sm text-gray-700 dark:text-gray-300">
+
+                    <!-- Introduction -->
+                    <div class="bg-blue-50 dark:bg-blue-900/20 p-4 rounded-lg border border-blue-200 dark:border-blue-800">
+                        <h3 class="text-lg font-semibold text-blue-700 dark:text-blue-300 mb-2">Understanding the Calculations</h3>
+                        <p class="text-gray-700 dark:text-gray-300">This calculator compares two scenarios over your chosen time horizon: buying a home with a mortgage versus renting and investing the difference. Below are the exact formulas and logic used.</p>
+                    </div>
+
+                    <!-- Buying Scenario -->
+                    <div>
+                        <h3 class="text-xl font-bold text-green-700 dark:text-green-400 mb-4 flex items-center border-b border-green-200 dark:border-green-700 pb-2">
+                            <span class="mr-2">🏠</span> Buying Scenario Calculations
+                        </h3>
+
+                        <div class="space-y-4 pl-4">
+                            <!-- Initial Costs -->
+                            <div class="bg-white dark:bg-gray-800 p-4 rounded-lg border border-gray-200 dark:border-gray-600">
+                                <h4 class="font-semibold text-gray-800 dark:text-gray-200 mb-2">1. Initial Upfront Costs</h4>
+                                <div class="font-mono text-xs bg-gray-100 dark:bg-gray-900 p-3 rounded border border-gray-300 dark:border-gray-600">
+                                    <div>Down Payment = Purchase Price × (Down Payment % ÷ 100)</div>
+                                    <div>Transfer Tax = Purchase Price × 2%</div>
+                                    <div>Other Costs = Purchase Price × (Other Costs % ÷ 100)</div>
+                                    <div class="mt-2 pt-2 border-t border-gray-300 dark:border-gray-600 font-bold">Total Upfront = Down Payment + Transfer Tax + Other Costs</div>
+                                    <div class="mt-2 pt-2 border-t border-gray-300 dark:border-gray-600">Loan Amount = Purchase Price - Down Payment</div>
+                                </div>
+                                <p class="mt-2 text-xs italic text-gray-600 dark:text-gray-400">The upfront costs represent your initial cash outlay when buying. This same amount becomes the renter's initial investment.</p>
+                            </div>
+
+                            <!-- Monthly Mortgage Payment -->
+                            <div class="bg-white dark:bg-gray-800 p-4 rounded-lg border border-gray-200 dark:border-gray-600">
+                                <h4 class="font-semibold text-gray-800 dark:text-gray-200 mb-2">2. Monthly Mortgage Payment (EMI)</h4>
+                                <div class="font-mono text-xs bg-gray-100 dark:bg-gray-900 p-3 rounded border border-gray-300 dark:border-gray-600">
+                                    <div>r = Annual Interest Rate ÷ 12  <span class="text-gray-500">(monthly rate)</span></div>
+                                    <div>n = Amortization Years × 12  <span class="text-gray-500">(total months)</span></div>
+                                    <div class="mt-2">Monthly Payment = P × [r(1+r)ⁿ] ÷ [(1+r)ⁿ - 1]</div>
+                                    <div class="text-xs mt-2 text-gray-600 dark:text-gray-400">where P = Loan Amount</div>
+                                </div>
+                                <p class="mt-2 text-xs italic text-gray-600 dark:text-gray-400">This is the standard amortizing loan formula. Each payment includes both interest and principal.</p>
+                            </div>
+
+                            <!-- Monthly Interest & Principal Split -->
+                            <div class="bg-white dark:bg-gray-800 p-4 rounded-lg border border-gray-200 dark:border-gray-600">
+                                <h4 class="font-semibold text-gray-800 dark:text-gray-200 mb-2">3. Interest & Principal Split (Each Month)</h4>
+                                <div class="font-mono text-xs bg-gray-100 dark:bg-gray-900 p-3 rounded border border-gray-300 dark:border-gray-600">
+                                    <div>Interest This Month = Current Loan Balance × (r ÷ 12)</div>
+                                    <div>Principal This Month = Monthly Payment - Interest This Month</div>
+                                    <div class="mt-2 pt-2 border-t border-gray-300 dark:border-gray-600">New Loan Balance = Current Loan Balance - Principal This Month</div>
+                                </div>
+                                <p class="mt-2 text-xs italic text-gray-600 dark:text-gray-400">Early payments are mostly interest; later payments are mostly principal. After the amortization period ends, no more mortgage payments are made.</p>
+                            </div>
+
+                            <!-- Property Appreciation -->
+                            <div class="bg-white dark:bg-gray-800 p-4 rounded-lg border border-gray-200 dark:border-gray-600">
+                                <h4 class="font-semibold text-gray-800 dark:text-gray-200 mb-2">4. Property Value Growth (Each Year)</h4>
+                                <div class="font-mono text-xs bg-gray-100 dark:bg-gray-900 p-3 rounded border border-gray-300 dark:border-gray-600">
+                                    <div>New Home Value = Current Home Value × (1 + Appreciation Rate ÷ 100)</div>
+                                </div>
+                                <p class="mt-2 text-xs italic text-gray-600 dark:text-gray-400">The home value compounds annually at your specified appreciation rate.</p>
+                            </div>
+
+                            <!-- Annual Recurring Costs -->
+                            <div class="bg-white dark:bg-gray-800 p-4 rounded-lg border border-gray-200 dark:border-gray-600">
+                                <h4 class="font-semibold text-gray-800 dark:text-gray-200 mb-2">5. Annual Recurring Costs</h4>
+                                <div class="font-mono text-xs bg-gray-100 dark:bg-gray-900 p-3 rounded border border-gray-300 dark:border-gray-600">
+                                    <div>Base Value = <span class="text-green-600 dark:text-green-400">Current Home Value</span> or <span class="text-blue-600 dark:text-blue-400">Original Purchase Price</span></div>
+                                    <div class="text-xs text-gray-500 mb-2">(depending on your "Costs Based On" selection)</div>
+                                    <div>Maintenance = Base Value × (Maintenance % ÷ 100)</div>
+                                    <div>VvE Fees = Base Value × (VvE % ÷ 100)</div>
+                                    <div>Property Tax (OZB) = Current Home Value × (OZB % ÷ 100)</div>
+                                </div>
+                            </div>
+
+                            <!-- Tax Deduction -->
+                            <div class="bg-white dark:bg-gray-800 p-4 rounded-lg border border-gray-200 dark:border-gray-600">
+                                <h4 class="font-semibold text-gray-800 dark:text-gray-200 mb-2">6. Mortgage Interest Tax Deduction</h4>
+                                <div class="font-mono text-xs bg-gray-100 dark:bg-gray-900 p-3 rounded border border-gray-300 dark:border-gray-600">
+                                    <div>Tax Benefit = Interest Paid This Year × (Tax Rate ÷ 100)</div>
+                                    <div class="text-xs text-red-600 dark:text-red-400 mt-2">⚠ Only applies during amortization period</div>
+                                </div>
+                                <p class="mt-2 text-xs italic text-gray-600 dark:text-gray-400">Dutch "hypotheekrenteaftrek" allows you to deduct mortgage interest from taxable income.</p>
+                            </div>
+
+                            <!-- Net Worth -->
+                            <div class="bg-white dark:bg-gray-800 p-4 rounded-lg border border-gray-200 dark:border-gray-600">
+                                <h4 class="font-semibold text-gray-800 dark:text-gray-200 mb-2">7. Buyer Net Worth (Equity)</h4>
+                                <div class="font-mono text-xs bg-gray-100 dark:bg-gray-900 p-3 rounded border border-gray-300 dark:border-gray-600">
+                                    <div class="font-bold">Net Worth = Current Home Value - Remaining Loan Balance</div>
+                                </div>
+                                <p class="mt-2 text-xs italic text-gray-600 dark:text-gray-400">This is your equity in the home - what you'd net if you sold (ignoring selling costs).</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Renting Scenario -->
+                    <div class="mt-8">
+                        <h3 class="text-xl font-bold text-blue-700 dark:text-blue-400 mb-4 flex items-center border-b border-blue-200 dark:border-blue-700 pb-2">
+                            <span class="mr-2">🏢</span> Renting Scenario Calculations
+                        </h3>
+
+                        <div class="space-y-4 pl-4">
+                            <!-- Initial Investment -->
+                            <div class="bg-white dark:bg-gray-800 p-4 rounded-lg border border-gray-200 dark:border-gray-600">
+                                <h4 class="font-semibold text-gray-800 dark:text-gray-200 mb-2">1. Initial Investment</h4>
+                                <div class="font-mono text-xs bg-gray-100 dark:bg-gray-900 p-3 rounded border border-gray-300 dark:border-gray-600">
+                                    <div>Starting Investment = Buyer's Total Upfront Costs</div>
+                                </div>
+                                <p class="mt-2 text-xs italic text-gray-600 dark:text-gray-400">The renter starts with the same cash the buyer spent upfront, invested in the market.</p>
+                            </div>
+
+                            <!-- Rent Increases -->
+                            <div class="bg-white dark:bg-gray-800 p-4 rounded-lg border border-gray-200 dark:border-gray-600">
+                                <h4 class="font-semibold text-gray-800 dark:text-gray-200 mb-2">2. Annual Rent Increases</h4>
+                                <div class="font-mono text-xs bg-gray-100 dark:bg-gray-900 p-3 rounded border border-gray-300 dark:border-gray-600">
+                                    <div>New Monthly Rent = Current Monthly Rent × (1 + Rent Increase % ÷ 100)</div>
+                                    <div class="mt-2">Annual Rent Paid = Monthly Rent × 12</div>
+                                </div>
+                                <p class="mt-2 text-xs italic text-gray-600 dark:text-gray-400">Rent compounds annually at your specified increase rate.</p>
+                            </div>
+
+                            <!-- Cash Flow Difference -->
+                            <div class="bg-white dark:bg-gray-800 p-4 rounded-lg border border-gray-200 dark:border-gray-600">
+                                <h4 class="font-semibold text-gray-800 dark:text-gray-200 mb-2">3. Annual Cash Flow to Invest</h4>
+                                <div class="font-mono text-xs bg-gray-100 dark:bg-gray-900 p-3 rounded border border-gray-300 dark:border-gray-600">
+                                    <div>Buyer's Annual Cash Out = Mortgage + OZB + Maintenance + VvE - Tax Deduction</div>
+                                    <div>Renter's Annual Cash Out = Annual Rent Paid</div>
+                                    <div class="mt-2 pt-2 border-t border-gray-300 dark:border-gray-600 font-bold">Cash Available to Invest = Buyer Cash Out - Renter Cash Out</div>
+                                </div>
+                                <p class="mt-2 text-xs italic text-gray-600 dark:text-gray-400">If the buyer spends more, the renter invests the difference. If negative, the renter withdraws from investments.</p>
+                            </div>
+
+                            <!-- Investment Returns -->
+                            <div class="bg-white dark:bg-gray-800 p-4 rounded-lg border border-gray-200 dark:border-gray-600">
+                                <h4 class="font-semibold text-gray-800 dark:text-gray-200 mb-2">4. Investment Growth (Each Year)</h4>
+                                <div class="font-mono text-xs bg-gray-100 dark:bg-gray-900 p-3 rounded border border-gray-300 dark:border-gray-600">
+                                    <div>1. Add cash flow: Investments += Cash Available to Invest</div>
+                                    <div>2. Calculate return: Growth = Investments × (Return Rate ÷ 100)</div>
+                                    <div>3. Add growth: Investments += Growth</div>
+                                </div>
+                                <p class="mt-2 text-xs italic text-gray-600 dark:text-gray-400">Returns compound annually. The calculation assumes cash flows happen at the start of each year.</p>
+                            </div>
+
+                            <!-- Wealth Tax -->
+                            <div class="bg-white dark:bg-gray-800 p-4 rounded-lg border border-gray-200 dark:border-gray-600">
+                                <h4 class="font-semibold text-gray-800 dark:text-gray-200 mb-2">5. Box 3 Wealth Tax (Optional)</h4>
+                                <div class="font-mono text-xs bg-gray-100 dark:bg-gray-900 p-3 rounded border border-gray-300 dark:border-gray-600">
+                                    <div>If "Taxable" is selected AND Investments > €57,000:</div>
+                                    <div class="mt-1 ml-4">Wealth Tax = (Investments - €57,000) × 1.5%</div>
+                                    <div class="mt-1 ml-4">Investments -= Wealth Tax</div>
+                                    <div class="mt-2 text-xs text-gray-500">If "Tax-Free" is selected: No wealth tax applied</div>
+                                </div>
+                                <p class="mt-2 text-xs italic text-gray-600 dark:text-gray-400">Dutch "vermogensrendementsheffing" (Box 3) taxes investment wealth above €57,000 at 1.5% annually. This is a simplified calculation.</p>
+                            </div>
+
+                            <!-- Renter Net Worth -->
+                            <div class="bg-white dark:bg-gray-800 p-4 rounded-lg border border-gray-200 dark:border-gray-600">
+                                <h4 class="font-semibold text-gray-800 dark:text-gray-200 mb-2">6. Renter Net Worth</h4>
+                                <div class="font-mono text-xs bg-gray-100 dark:bg-gray-900 p-3 rounded border border-gray-300 dark:border-gray-600">
+                                    <div class="font-bold">Net Worth = Total Invested Assets</div>
+                                </div>
+                                <p class="mt-2 text-xs italic text-gray-600 dark:text-gray-400">The renter's total investment portfolio value (after returns and taxes).</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Comparison -->
+                    <div class="mt-8">
+                        <h3 class="text-xl font-bold text-indigo-700 dark:text-indigo-400 mb-4 flex items-center border-b border-indigo-200 dark:border-indigo-700 pb-2">
+                            <span class="mr-2">⚖️</span> Comparing the Scenarios
+                        </h3>
+
+                        <div class="bg-white dark:bg-gray-800 p-4 rounded-lg border border-gray-200 dark:border-gray-600">
+                            <h4 class="font-semibold text-gray-800 dark:text-gray-200 mb-2">Net Worth Advantage</h4>
+                            <div class="font-mono text-xs bg-gray-100 dark:bg-gray-900 p-3 rounded border border-gray-300 dark:border-gray-600">
+                                <div class="font-bold">Advantage = Renter Net Worth - Buyer Net Worth</div>
+                                <div class="mt-3 text-xs">
+                                    <div class="text-blue-600 dark:text-blue-400">✓ Positive value = Renting is financially better</div>
+                                    <div class="text-green-600 dark:text-green-400">✓ Negative value = Buying is financially better</div>
+                                </div>
+                            </div>
+                            <p class="mt-2 text-xs italic text-gray-600 dark:text-gray-400">This shows which scenario leaves you with more wealth after your chosen time horizon.</p>
+                        </div>
+                    </div>
+
+                    <!-- Important Notes -->
+                    <div class="mt-8 bg-yellow-50 dark:bg-yellow-900/20 p-4 rounded-lg border border-yellow-200 dark:border-yellow-800">
+                        <h3 class="text-lg font-semibold text-yellow-800 dark:text-yellow-300 mb-2">📝 Important Notes</h3>
+                        <ul class="list-disc list-inside space-y-1 text-xs text-gray-700 dark:text-gray-300">
+                            <li><strong>Simplifications:</strong> This calculator makes assumptions (e.g., annual compounding, cash flows at year start, no selling costs) to keep calculations understandable.</li>
+                            <li><strong>Tax Rates:</strong> Tax calculations are simplified. Actual tax situations vary by individual circumstances.</li>
+                            <li><strong>Box 3 Threshold:</strong> The €57,000 threshold is approximate and may change with tax law updates.</li>
+                            <li><strong>Investment Timing:</strong> Investment returns are calculated assuming cash flow differences are invested at the beginning of each year.</li>
+                            <li><strong>No Transaction Costs:</strong> Selling costs, broker fees, and other transaction costs are not included.</li>
+                            <li><strong>Not Financial Advice:</strong> This tool is for educational purposes. Consult a financial advisor for personal decisions.</li>
+                        </ul>
+                    </div>
+
+                    <!-- Formula Reference Card -->
+                    <div class="mt-8 bg-indigo-50 dark:bg-indigo-900/20 p-4 rounded-lg border border-indigo-200 dark:border-indigo-800">
+                        <h3 class="text-lg font-semibold text-indigo-800 dark:text-indigo-300 mb-3">🧮 Quick Formula Reference</h3>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-xs">
+                            <div>
+                                <div class="font-semibold text-green-700 dark:text-green-400 mb-1">Buying</div>
+                                <div class="font-mono bg-white dark:bg-gray-800 p-2 rounded border border-gray-300 dark:border-gray-600">
+                                    <div>EMI = P×[r(1+r)ⁿ]/[(1+r)ⁿ-1]</div>
+                                    <div>Equity = Home Value - Loan</div>
+                                    <div>Tax Benefit = Interest × Tax Rate</div>
+                                </div>
+                            </div>
+                            <div>
+                                <div class="font-semibold text-blue-700 dark:text-blue-400 mb-1">Renting</div>
+                                <div class="font-mono bg-white dark:bg-gray-800 p-2 rounded border border-gray-300 dark:border-gray-600">
+                                    <div>Net Worth = Investments</div>
+                                    <div>Growth = Assets × Return Rate</div>
+                                    <div>Tax = (Assets - €57k) × 1.5%</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
         <footer class="text-center mt-12 py-4 border-t border-gray-200 dark:border-gray-700">
             <p class="text-sm text-gray-600 dark:text-gray-400 mb-2">
                 <a href="https://github.com/salujayatharth/nl-buy-vs-rent" target="_blank" rel="noopener noreferrer" class="text-indigo-600 dark:text-indigo-400 hover:text-indigo-800 dark:hover:text-indigo-300 transition-colors">
@@ -277,8 +506,8 @@
 
     <script>
         // --- Constants & Globals ---
-        const TRANSFER_TAX_RATE = 0.02; 
-        const BOX3_TAX_FREE_THRESHOLD = 0;
+        const TRANSFER_TAX_RATE = 0.02;
+        const BOX3_TAX_FREE_THRESHOLD = 57000; // Dutch Box 3 tax-free threshold (2024)
         let netWorthChart, deltaChart;
         let animationTimeout = null;
         let currentYearlyData = []; // Store current yearly data for CSV export
@@ -955,6 +1184,10 @@
         // --- Event Listeners & Initial Load ---
         toggleDetailsButton.addEventListener('click', () => { const isHidden = detailsSection.classList.toggle('hidden'); detailsArrow.textContent = isHidden ? '▼' : '▲'; });
         toggleYearlyDataButton.addEventListener('click', () => { const isHidden = yearlyDataSection.classList.toggle('hidden'); yearlyDataArrow.textContent = isHidden ? '▼' : '▲'; });
+        const toggleMathButton = el('toggleMathButton');
+        const mathSection = el('mathSection');
+        const mathArrow = el('mathArrow');
+        toggleMathButton.addEventListener('click', () => { const isHidden = mathSection.classList.toggle('hidden'); mathArrow.textContent = isHidden ? '▼' : '▲'; });
         exportCsvButton.addEventListener('click', exportToCsv);
         resetButton.addEventListener('click', resetToDefaults);
         
