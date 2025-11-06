@@ -128,23 +128,62 @@
 </head>
 <body class="bg-gray-50 dark:bg-gray-900 text-gray-800 dark:text-gray-100 transition-colors duration-300">
     <div class="container mx-auto p-4 md:p-8">
-        <header class="flex justify-between items-center mb-6">
-            <div class="text-center flex-1">
-                <h1 class="text-3xl md:text-4xl font-bold text-indigo-600 dark:text-indigo-400">Interactive Rent vs. Buy Calculator</h1>
-                <p class="text-lg text-gray-600 dark:text-gray-300">Netherlands Edition</p>
+        <header class="mb-6">
+            <!-- Logo at top right -->
+            <div class="flex justify-end mb-4">
+                <svg width="80" height="80" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" class="transition-colors duration-300">
+                    <!-- House shape -->
+                    <path d="M50 15 L20 40 L20 75 L45 75 L45 55 L55 55 L55 75 L80 75 L80 40 Z"
+                          fill="url(#houseGradient)"
+                          stroke="currentColor"
+                          stroke-width="2"
+                          class="text-indigo-600 dark:text-indigo-400"/>
+                    <!-- Door -->
+                    <rect x="45" y="55" width="10" height="20" fill="currentColor" class="text-indigo-800 dark:text-indigo-300"/>
+                    <!-- Window left -->
+                    <rect x="28" y="48" width="8" height="8" fill="currentColor" class="text-yellow-400 dark:text-yellow-300"/>
+                    <!-- Window right -->
+                    <rect x="64" y="48" width="8" height="8" fill="currentColor" class="text-yellow-400 dark:text-yellow-300"/>
+                    <!-- Roof line -->
+                    <path d="M15 40 L50 10 L85 40"
+                          stroke="currentColor"
+                          stroke-width="3"
+                          fill="none"
+                          stroke-linecap="round"
+                          class="text-indigo-700 dark:text-indigo-300"/>
+                    <!-- Chimney -->
+                    <rect x="65" y="22" width="6" height="12" fill="currentColor" class="text-gray-600 dark:text-gray-400"/>
+                    <!-- Currency symbol (€) -->
+                    <circle cx="25" cy="25" r="12" fill="currentColor" class="text-green-500 dark:text-green-400" opacity="0.9"/>
+                    <text x="25" y="30" font-size="14" font-weight="bold" text-anchor="middle" fill="white">€</text>
+                    <!-- Gradient definition -->
+                    <defs>
+                        <linearGradient id="houseGradient" x1="0%" y1="0%" x2="0%" y2="100%">
+                            <stop offset="0%" style="stop-color:rgb(129, 140, 248);stop-opacity:0.3" class="dark:stop-color-indigo-600"/>
+                            <stop offset="100%" style="stop-color:rgb(99, 102, 241);stop-opacity:0.1" class="dark:stop-color-indigo-800"/>
+                        </linearGradient>
+                    </defs>
+                </svg>
             </div>
-            <div class="flex items-center space-x-4">
-                <div class="flex items-center space-x-3">
-                    <span class="text-sm font-medium text-gray-700 dark:text-gray-300">🌞</span>
-                    <label class="theme-toggle">
-                        <input type="checkbox" id="themeToggle">
-                        <span class="theme-slider round"></span>
-                    </label>
-                    <span class="text-sm font-medium text-gray-700 dark:text-gray-300">🌙</span>
+
+            <div class="flex justify-between items-center">
+                <div class="text-center flex-1">
+                    <h1 class="text-3xl md:text-4xl font-bold text-indigo-600 dark:text-indigo-400">Interactive Rent vs. Buy Calculator</h1>
+                    <p class="text-lg text-gray-600 dark:text-gray-300">Netherlands Edition</p>
                 </div>
-                <button id="resetButton" class="bg-indigo-600 hover:bg-indigo-700 dark:bg-indigo-500 dark:hover:bg-indigo-600 text-white font-medium py-2 px-4 rounded-lg transition focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 dark:focus:ring-offset-gray-900">
-                    Reset to Defaults
-                </button>
+                <div class="flex items-center space-x-4">
+                    <div class="flex items-center space-x-3">
+                        <span class="text-sm font-medium text-gray-700 dark:text-gray-300">🌞</span>
+                        <label class="theme-toggle">
+                            <input type="checkbox" id="themeToggle">
+                            <span class="theme-slider round"></span>
+                        </label>
+                        <span class="text-sm font-medium text-gray-700 dark:text-gray-300">🌙</span>
+                    </div>
+                    <button id="resetButton" class="bg-indigo-600 hover:bg-indigo-700 dark:bg-indigo-500 dark:hover:bg-indigo-600 text-white font-medium py-2 px-4 rounded-lg transition focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 dark:focus:ring-offset-gray-900">
+                        Reset to Defaults
+                    </button>
+                </div>
             </div>
         </header>
 
